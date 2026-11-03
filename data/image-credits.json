@@ -1,0 +1,114 @@
+{
+ "aurora": {
+  "file": "img/aurora.jpg",
+  "title": "File:The aurora borealis blankets the Earth (iss072e159516).jpg",
+  "author": "NASA Johnson Space Center",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:The_aurora_borealis_blankets_the_Earth_(iss072e159516).jpg"
+ },
+ "bnc": {
+  "file": "img/bnc.jpg",
+  "title": "File:BNC connector 20050720 001.jpg",
+  "author": "Jonas Bergsten",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:BNC_connector_20050720_001.jpg"
+ },
+ "components": {
+  "file": "img/components.jpg",
+  "title": "File:Componentes electronicos.jpg",
+  "author": "Ivan2010",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Componentes_electronicos.jpg"
+ },
+ "handheld": {
+  "file": "img/handheld.jpg",
+  "title": "File:Baofeng UV-5R transceiver.jpg",
+  "author": "Варвара Каминская",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Baofeng_UV-5R_transceiver.jpg"
+ },
+ "ionosphere": {
+  "file": "img/ionosphere.jpg",
+  "title": "File:Ionosphere and its constituents.jpg",
+  "author": "Space Travel Blog / Rute Marta Jansone",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Ionosphere_and_its_constituents.jpg"
+ },
+ "iss": {
+  "file": "img/iss.jpg",
+  "title": "File:ISS-56 International Space Station fly-around (01).jpg",
+  "author": "NASA/Roscosmos",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:ISS-56_International_Space_Station_fly-around_(01).jpg"
+ },
+ "ladderline": {
+  "file": "img/ladderline.jpg",
+  "title": "File:LadderlineW3NP.JPG",
+  "author": "LuckyLouie",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:LadderlineW3NP.JPG"
+ },
+ "morse": {
+  "file": "img/morse.jpg",
+  "title": "File:Morse key n jacobsen mekaniske verksted 1935 IMG 3774 telenor bergen.jpg",
+  "author": "Bjoertvedt",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Morse_key_n_jacobsen_mekaniske_verksted_1935_IMG_3774_telenor_bergen.jpg"
+ },
+ "multimeter": {
+  "file": "img/multimeter.jpg",
+  "title": "File:Digital Multimeter (To measure Voltage, Current and Resistance).jpg",
+  "author": "K.Venkataramana",
+  "license": "CC0",
+  "source": "https://commons.wikimedia.org/wiki/File:Digital_Multimeter_(To_measure_Voltage,_Current_and_Resistance).jpg"
+ },
+ "pl259": {
+  "file": "img/pl259.jpg",
+  "title": "File:UHF PL Connector.jpg",
+  "author": "Appaloosa",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:UHF_PL_Connector.jpg"
+ },
+ "repeater": {
+  "file": "img/repeater.jpg",
+  "title": "File:Wm4t amateur radio tower.jpg",
+  "author": "Wd4sbx",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Wm4t_amateur_radio_tower.jpg"
+ },
+ "shack": {
+  "file": "img/shack.jpg",
+  "title": "File:Shack radio-amateur nuit.jpg",
+  "author": "Roland Brierre",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Shack_radio-amateur_nuit.jpg"
+ },
+ "spectrum": {
+  "file": "img/spectrum.jpg",
+  "title": "File:Chart of Electromagnetic Radiations.jpg",
+  "author": "W.M Welch Scientific Company",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Chart_of_Electromagnetic_Radiations.jpg"
+ },
+ "swrmeter": {
+  "file": "img/swrmeter.jpg",
+  "title": "File:SWR & power meter front view.jpg",
+  "author": "User:魔私利戸",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:SWR_%26_power_meter_front_view.jpg"
+ },
+ "tower": {
+  "file": "img/tower.png",
+  "title": "File:Ham Radio Tower Climbing.png",
+  "author": "Ptolusque",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Ham_Radio_Tower_Climbing.png"
+ },
+ "yagi": {
+  "file": "img/yagi.jpg",
+  "title": "File:Lang-Yagi-Uda-Antenne.JPG",
+  "author": "Denis Apel",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Lang-Yagi-Uda-Antenne.JPG"
+ }
+}

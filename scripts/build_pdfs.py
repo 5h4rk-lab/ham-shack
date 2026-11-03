@@ -141,6 +141,16 @@ th{background:var(--panel);color:#eef3ee;font:600 10pt 'Barlow',sans-serif;text-
 th,td{padding:.35em .6em;border:1px solid var(--rule);vertical-align:top}
 tr:nth-child(even) td{background:#f1f4ef}
 
+.groupbar{margin:.2em 0 .9em;padding:.5em .8em;background:#eef2ee;border-left:5px solid var(--amber-d);font-size:9pt;color:#33403a;break-inside:avoid}
+.groupbar p{margin:.15em 0;max-width:none}
+.groupbar b{color:var(--panel)}
+blockquote.elmer{background:#e4efe3;border-left-color:#4a7c3a}
+blockquote.elmer p:first-child strong:first-child{font-family:'Barlow',sans-serif;font-size:11.5pt;color:#2f5a14}
+figure.photo{margin:.9em 0;break-inside:avoid;max-width:4.6in}
+figure.photo img{width:100%;max-height:2.6in;object-fit:cover;border:1px solid var(--rule)}
+figure.photo figcaption{font-size:8.5pt;color:#44514a}
+figure.photo .credit{display:block;font-size:7pt;color:#7a867e}
+.labnote{margin:.8em 0;padding:.5em .8em;background:#f3ecd9;border-left:5px solid var(--amber);font-size:9.5pt;break-inside:avoid}
 .appendix-title{break-before:page}
 .sub-head{break-before:page;margin-top:0}
 .q{break-inside:avoid;margin:.55em 0 .75em;padding-bottom:.5em;border-bottom:1px dotted var(--rule)}
@@ -211,6 +221,43 @@ def build_appendix(cfg):
     return "\n".join(out)
 
 
+def enhance(body, key):
+    """Bring the site's extras into the PDF: group bars, photos with credits, Elmer notes, lab pointers."""
+    groups = json.loads((ROOT / "data/groups.json").read_text()).get(key, {})
+    rules = json.loads((ROOT / "data/part97-sections.json").read_text())
+    credits = json.loads((ROOT / "data/image-credits.json").read_text())
+
+    def bar(m):
+        gid = m.group(2)
+        g = groups.get(gid)
+        if not g:
+            return m.group(0)
+        parts = []
+        if g["official"]:
+            parts.append(f"<p><b>Official syllabus:</b> {html.escape(g['official'])}</p>")
+        if g["refs"]:
+            rs = "; ".join(f"{('§' + r) if r.startswith('97.') else r} {html.escape(rules.get(r, {}).get('title', ''))}" for r in g["refs"])
+            parts.append(f"<p><b>Rules behind these questions:</b> {rs}</p>")
+        parts.append(f"<p><b>{g['n']} questions</b> in the pool for {gid}; the full list is in the appendix.</p>")
+        return m.group(0) + '<div class="groupbar">' + "".join(parts) + "</div>"
+
+    body = re.sub(r"(<h2 id=\"[^\"]*\">([TGE][0-9][A-F]) · .*?</h2>)", bar, body)
+    body = body.replace("<blockquote>\n<p><strong>Elmer", '<blockquote class="elmer">\n<p><strong>Elmer')
+
+    def fig(m):
+        c = credits.get(m.group(1))
+        if not c:
+            return ""
+        cap = f'<span>{html.escape(m.group(2) or "")}</span>' if m.group(2) else ""
+        return (f'<figure class="photo"><img src="file://{ROOT}/site/public/{c["file"]}">'
+                f'<figcaption>{cap}<span class="credit">Photo: {html.escape(c["author"] or "unknown")} · {html.escape(c["license"])} · {html.escape(c["source"])}</span></figcaption></figure>')
+
+    body = re.sub(r"<!--\s*img:(\w+)(?:\s+(.*?))?\s*-->", fig, body, flags=re.S)
+    body = re.sub(r"<!--\s*lab:(\w+)\s*-->",
+                  r'<p class="labnote"><b>Hands-on:</b> there is an interactive version of this idea in the <b>The Shack</b> website (Learn, then this topic).</p>', body)
+    return body
+
+
 def build_one(key):
     cfg = CERTS[key]
     md = ROOT / cfg["guide"]
@@ -218,6 +265,7 @@ def build_one(key):
         ["pandoc", "-f", "markdown+pipe_tables-yaml_metadata_block", "-t", "html5", "--wrap=none", str(md)],
         check=True, capture_output=True, text=True,
     ).stdout
+    body = enhance(body, key)
     # strip the YAML header pandoc would otherwise print as a paragraph
     body = re.sub(r"^<hr />.*?<hr />", "", body, flags=re.S) if body.startswith("<hr") else body
     appendix = build_appendix(cfg)

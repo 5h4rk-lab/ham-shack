@@ -16,7 +16,13 @@ All ham radio work for this user lives in this repo: exam prep, the interactive 
 - Site design language: Heathkit-style front panel. Barlow Condensed (display), Atkinson Hyperlegible (body), amber on green-gray steel. Keep rack units, lamps, push-buttons. No cream/terracotta, no neon-on-black.
 - Any new transmit-capable project README must state the license class required.
 
+## Guide markers
+In `study-guides/<class>/*.md`: `<!-- lab:ohm -->` (see `site/src/components/labs.jsx` LABS), `<!-- img:key caption -->` (key from data/image-credits.json), and blockquotes starting `> **Elmer says:**` render as mentor notes. `<!-- group:ID -->` is added by the site automatically. The PDF builder turns the same markers into photos, group bars and "hands-on" pointers.
+
 ## Commands
 - `cd site && npm run dev` / `npm run build`
 - `python3 scripts/build_pdfs.py [technician|general|extra]`
 - `python3 scripts/make_banner.py`
+- `python3 scripts/build_groups.py` after any pool/syllabus change (writes data/groups.json used by lessons and PDFs)
+- `python3 scripts/audit_coverage.py technician --list` to find questions the guide does not teach
+- `python3 scripts/fetch_images.py search "query"` / `get key "File:Name.jpg"` for photos. Only freely-licensed Commons images; credits land in data/image-credits.json. Never hotlink or paste unlicensed images, even though the site is personal: it is public on Vercel.

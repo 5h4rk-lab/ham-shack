@@ -15,6 +15,8 @@ import Drill from './pages/Drill'
 import Exam from './pages/Exam'
 import Lab from './pages/Lab'
 import Progress from './pages/Progress'
+import Reference from './pages/Reference'
+import Credits from './pages/Credits'
 
 createRoot(document.getElementById('root')).render(
   <HashRouter>
@@ -28,6 +30,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="lab" element={<Lab />} />
         <Route path="lab/:tool" element={<Lab />} />
         <Route path="progress" element={<Progress />} />
+        <Route path="ref" element={<Reference />} />
+        <Route path="ref/:tab" element={<Reference />} />
+        <Route path="credits" element={<Credits />} />
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>

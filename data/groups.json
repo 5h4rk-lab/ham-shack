@@ -1,0 +1,756 @@
+{
+ "technician": {
+  "T0A": {
+   "n": 12,
+   "refs": [],
+   "official": "Power circuits and hazards: hazardous voltages, fuses and circuit breakers, grounding, electrical code compliance; Lightning protection; Battery safety"
+  },
+  "T0B": {
+   "n": 11,
+   "refs": [],
+   "official": "Antenna safety: tower safety and grounding, installing antennas, antenna supports"
+  },
+  "T0C": {
+   "n": 13,
+   "refs": [],
+   "official": "RF hazards: radiation exposure, proximity to antennas, recognized safe power levels, radiation types, duty cycle"
+  },
+  "T1A": {
+   "n": 11,
+   "refs": [
+    "97.1",
+    "97.3",
+    "97.7",
+    "97.23",
+    "97.101",
+    "97.119",
+    "97.203",
+    "97.407"
+   ],
+   "official": "Purpose and permissible use of the Amateur Radio Service; Operator/primary station license grant; Meanings of basic terms used in FCC rules; Interference; RACES rules; Phonetics; Frequency Coordinator; Beacon"
+  },
+  "T1B": {
+   "n": 12,
+   "refs": [
+    "97.101",
+    "97.207",
+    "97.301",
+    "97.303",
+    "97.305",
+    "97.313"
+   ],
+   "official": "Frequency allocations; Emission modes; Spectrum sharing; Transmissions near band edges; Contacting the International Space Station; Power output"
+  },
+  "T1C": {
+   "n": 11,
+   "refs": [
+    "1.949",
+    "97.5",
+    "97.9",
+    "97.11",
+    "97.17",
+    "97.19",
+    "97.21",
+    "97.23",
+    "97.25",
+    "97.117"
+   ],
+   "official": "Licensing: classes, sequential and vanity call sign systems, places where the Amateur Radio Service is regulated by the FCC, name and address on FCC license database, term, renewal, grace period, maintaining mailing address; International communications"
+  },
+  "T1D": {
+   "n": 12,
+   "refs": [
+    "97.3",
+    "97.111",
+    "97.113",
+    "97.119",
+    "97.201",
+    "97.211",
+    "97.215"
+   ],
+   "official": "Authorized and prohibited transmissions; Sale of equipment"
+  },
+  "T1E": {
+   "n": 11,
+   "refs": [
+    "97.3",
+    "97.7",
+    "97.103",
+    "97.109",
+    "97.205",
+    "97.207",
+    "97.301"
+   ],
+   "official": "Control operator: eligibility, designating, privileges, duties, location, required; Control point; Control types: automatic, remote"
+  },
+  "T1F": {
+   "n": 11,
+   "refs": [
+    "97.3",
+    "97.5",
+    "97.103",
+    "97.115",
+    "97.119",
+    "97.205"
+   ],
+   "official": "Station identification; Repeaters; Third party communications; Club stations; FCC inspection"
+  },
+  "T2A": {
+   "n": 11,
+   "refs": [],
+   "official": "Station operation: choosing an operating frequency, calling another station, test transmissions; Band plans: calling frequencies, repeater offsets"
+  },
+  "T2B": {
+   "n": 14,
+   "refs": [],
+   "official": "VHF/UHF operating practices: FM repeater, simplex, reverse splits; Access tones: CTCSS, DTMF; DMR operation; Resolving operating problems; Q signals"
+  },
+  "T2C": {
+   "n": 12,
+   "refs": [
+    "97.103"
+   ],
+   "official": "Public service: emergency operations, applicability of FCC rules, RACES and ARES, net and traffic procedures, operating restrictions during emergencies, use of phonetics in message handling"
+  },
+  "T3A": {
+   "n": 12,
+   "refs": [],
+   "official": "Radio wave characteristics: how a radio signal travels, fading, multipath, polarization, wavelength vs absorption; Antenna orientation"
+  },
+  "T3B": {
+   "n": 12,
+   "refs": [],
+   "official": "Electromagnetic wave properties: wavelength vs frequency, nature and velocity of electromagnetic waves, relationship of wavelength and frequency; Electromagnetic spectrum definitions: UHF, VHF, HF"
+  },
+  "T3C": {
+   "n": 11,
+   "refs": [],
+   "official": "Propagation modes: sporadic E, meteor scatter, auroral propagation, tropospheric ducting; F region skip; Line of sight and radio horizon"
+  },
+  "T4A": {
+   "n": 12,
+   "refs": [],
+   "official": "Station setup: connecting a microphone, RF power meter, a power source, a computer, digital equipment, an SWR meter; bonding; Mobile radio installation"
+  },
+  "T4B": {
+   "n": 11,
+   "refs": [],
+   "official": "Operating controls: frequency tuning, use of filters, squelch function, AGC, memory channels, noise blanker, microphone gain, receiver incremental tuning (RIT), bandwidth selection, scanning function; Digital transceiver configuration; DMR code plugs and talk groups"
+  },
+  "T5A": {
+   "n": 11,
+   "refs": [],
+   "official": "Current and voltage: terminology and units, conductors and insulators, alternating and direct current"
+  },
+  "T5B": {
+   "n": 13,
+   "refs": [],
+   "official": "Math for electronics: conversion of electrical units, decibels"
+  },
+  "T5C": {
+   "n": 12,
+   "refs": [],
+   "official": "Capacitance and inductance terminology and units; Radio frequency definition and units; Impedance definition and units; Calculating power"
+  },
+  "T5D": {
+   "n": 14,
+   "refs": [],
+   "official": "Ohm’s Law; Series and parallel circuits"
+  },
+  "T6A": {
+   "n": 11,
+   "refs": [],
+   "official": "Fixed and variable resistors; Capacitors; Inductors; Fuses; Switches; Batteries"
+  },
+  "T6B": {
+   "n": 12,
+   "refs": [],
+   "official": "Semiconductors: basic principles and applications of solid-state devices, diodes and transistors; Gain"
+  },
+  "T6C": {
+   "n": 12,
+   "refs": [],
+   "official": "Circuit diagrams: use of schematics, basic structure; Schematic symbols of basic components"
+  },
+  "T6D": {
+   "n": 11,
+   "refs": [],
+   "official": "Component functions: rectifiers, relays, voltage regulators, meters, indicators, integrated circuits, transformers; Resonant circuit; Shielding"
+  },
+  "T7A": {
+   "n": 11,
+   "refs": [],
+   "official": "Station equipment: receivers, transceivers, transmitter amplifiers, RF preamplifiers, transverters; Basic radio circuit concepts and terminology: sensitivity, selectivity, mixers, oscillators, Push-To-Talk (PTT), VFO, modulation"
+  },
+  "T7B": {
+   "n": 11,
+   "refs": [],
+   "official": "Symptoms, causes, and cures of common transmitter and receiver problems: overload and overdrive, distortion, interference and consumer electronics, RF feedback"
+  },
+  "T7C": {
+   "n": 11,
+   "refs": [],
+   "official": "Antenna and transmission line measurements and troubleshooting: measuring SWR, effects of high SWR, causes of feed line failures; Basic coaxial cable characteristics; Use of dummy loads when testing"
+  },
+  "T7D": {
+   "n": 11,
+   "refs": [],
+   "official": "Using basic test instruments: voltmeter, ammeter, and ohmmeter; Soldering"
+  },
+  "T8A": {
+   "n": 12,
+   "refs": [],
+   "official": "Basic characteristics of FM and SSB; Bandwidth of various modulation modes: CW, SSB, FM, fast-scan TV; Choice of emission type: selection of USB vs LSB, use of SSB for weak signal work, use of FM for VHF packet and repeaters"
+  },
+  "T8B": {
+   "n": 12,
+   "refs": [],
+   "official": "Amateur satellite operation: Doppler shift, basic orbits, operating protocols, modulation mode selection, transmitter power considerations, telemetry, satellite tracking programs, beacons, uplink and downlink mode definitions, spin fading, definition of “LEO”, setting uplink power"
+  },
+  "T8C": {
+   "n": 11,
+   "refs": [],
+   "official": "Operating activities: radio direction finding, contests, linking over the internet, exchanging grid locators"
+  },
+  "T8D": {
+   "n": 12,
+   "refs": [],
+   "official": "Non-voice and digital communications: image signals and definition of NTSC, CW, packet radio, PSK, APRS, error detection and correction, amateur radio networking, DMR, WSJT modes, Broadband-Hamnet"
+  },
+  "T9A": {
+   "n": 11,
+   "refs": [],
+   "official": "Antennas: vertical and horizontal polarization, concept of antenna gain, definition and types of beam antennas, antenna loading, common portable and mobile antennas, relationships between resonant length and frequency, dipole pattern"
+  },
+  "T9B": {
+   "n": 12,
+   "refs": [],
+   "official": "Feed lines: types, attenuation vs frequency, selecting; SWR concepts; Antenna tuners (couplers); RF Connectors: selecting, weather protection"
+  }
+ },
+ "general": {
+  "G0A": {
+   "n": 12,
+   "refs": [
+    "1.1307",
+    "97.13"
+   ],
+   "official": ""
+  },
+  "G0B": {
+   "n": 13,
+   "refs": [],
+   "official": ""
+  },
+  "G1A": {
+   "n": 10,
+   "refs": [
+    "97.205",
+    "97.301",
+    "97.303",
+    "97.305"
+   ],
+   "official": ""
+  },
+  "G1B": {
+   "n": 11,
+   "refs": [
+    "PRB-1",
+    "97.3",
+    "97.15",
+    "97.101",
+    "97.111",
+    "97.113",
+    "97.203"
+   ],
+   "official": ""
+  },
+  "G1C": {
+   "n": 8,
+   "refs": [
+    "97.303",
+    "97.309",
+    "97.313"
+   ],
+   "official": ""
+  },
+  "G1D": {
+   "n": 12,
+   "refs": [
+    "97.7",
+    "97.9",
+    "97.119",
+    "97.501",
+    "97.505",
+    "97.507",
+    "97.509"
+   ],
+   "official": ""
+  },
+  "G1E": {
+   "n": 11,
+   "refs": [
+    "97.13",
+    "97.101",
+    "97.111",
+    "97.115",
+    "97.117",
+    "97.205",
+    "97.221",
+    "97.301",
+    "97.303",
+    "97.305",
+    "97.311",
+    "97.313"
+   ],
+   "official": ""
+  },
+  "G2A": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "G2B": {
+   "n": 11,
+   "refs": [
+    "97.101",
+    "97.407"
+   ],
+   "official": ""
+  },
+  "G2C": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "G2D": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "G2E": {
+   "n": 15,
+   "refs": [],
+   "official": ""
+  },
+  "G3A": {
+   "n": 14,
+   "refs": [],
+   "official": ""
+  },
+  "G3B": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "G3C": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "G4A": {
+   "n": 13,
+   "refs": [],
+   "official": ""
+  },
+  "G4B": {
+   "n": 13,
+   "refs": [],
+   "official": ""
+  },
+  "G4C": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "G4D": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "G4E": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "G5A": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "G5B": {
+   "n": 14,
+   "refs": [],
+   "official": ""
+  },
+  "G5C": {
+   "n": 14,
+   "refs": [],
+   "official": ""
+  },
+  "G6A": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "G6B": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "G7A": {
+   "n": 13,
+   "refs": [],
+   "official": ""
+  },
+  "G7B": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "G7C": {
+   "n": 14,
+   "refs": [],
+   "official": ""
+  },
+  "G8A": {
+   "n": 14,
+   "refs": [],
+   "official": ""
+  },
+  "G8B": {
+   "n": 13,
+   "refs": [],
+   "official": ""
+  },
+  "G8C": {
+   "n": 15,
+   "refs": [],
+   "official": ""
+  },
+  "G9A": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "G9B": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "G9C": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "G9D": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  }
+ },
+ "extra": {
+  "E0A": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E1A": {
+   "n": 11,
+   "refs": [
+    "97.5",
+    "97.11",
+    "97.219",
+    "97.301",
+    "97.303",
+    "97.305",
+    "97.307",
+    "97.313"
+   ],
+   "official": ""
+  },
+  "E1B": {
+   "n": 11,
+   "refs": [
+    "97.3",
+    "97.13",
+    "97.15",
+    "97.121",
+    "97.303",
+    "97.307",
+    "97.407"
+   ],
+   "official": ""
+  },
+  "E1C": {
+   "n": 12,
+   "refs": [
+    "97.5",
+    "97.115",
+    "97.117",
+    "97.213",
+    "97.221",
+    "97.303",
+    "97.305",
+    "97.307"
+   ],
+   "official": ""
+  },
+  "E1D": {
+   "n": 12,
+   "refs": [
+    "97.3",
+    "97.119",
+    "97.203",
+    "97.207",
+    "97.209",
+    "97.211",
+    "97.213",
+    "97.215"
+   ],
+   "official": ""
+  },
+  "E1E": {
+   "n": 11,
+   "refs": [
+    "97.509",
+    "97.511",
+    "97.521",
+    "97.523",
+    "97.525",
+    "97.527"
+   ],
+   "official": ""
+  },
+  "E1F": {
+   "n": 11,
+   "refs": [
+    "1.931",
+    "97.3",
+    "97.107",
+    "97.113",
+    "97.201",
+    "97.303",
+    "97.305",
+    "97.315",
+    "97.317"
+   ],
+   "official": ""
+  },
+  "E2A": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E2B": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E2C": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E2D": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E2E": {
+   "n": 13,
+   "refs": [],
+   "official": ""
+  },
+  "E3A": {
+   "n": 14,
+   "refs": [],
+   "official": ""
+  },
+  "E3B": {
+   "n": 13,
+   "refs": [],
+   "official": ""
+  },
+  "E3C": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E4A": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E4B": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E4C": {
+   "n": 14,
+   "refs": [],
+   "official": ""
+  },
+  "E4D": {
+   "n": 13,
+   "refs": [],
+   "official": ""
+  },
+  "E4E": {
+   "n": 14,
+   "refs": [],
+   "official": ""
+  },
+  "E5A": {
+   "n": 13,
+   "refs": [],
+   "official": ""
+  },
+  "E5B": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E5C": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E5D": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E6A": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E6B": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E6C": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E6D": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E6E": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E6F": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E7A": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E7B": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E7C": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E7D": {
+   "n": 15,
+   "refs": [],
+   "official": ""
+  },
+  "E7E": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E7F": {
+   "n": 14,
+   "refs": [],
+   "official": ""
+  },
+  "E7G": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E7H": {
+   "n": 13,
+   "refs": [],
+   "official": ""
+  },
+  "E8A": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E8B": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E8C": {
+   "n": 15,
+   "refs": [],
+   "official": ""
+  },
+  "E8D": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E9A": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E9B": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E9C": {
+   "n": 14,
+   "refs": [],
+   "official": ""
+  },
+  "E9D": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E9E": {
+   "n": 10,
+   "refs": [],
+   "official": ""
+  },
+  "E9F": {
+   "n": 12,
+   "refs": [],
+   "official": ""
+  },
+  "E9G": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  },
+  "E9H": {
+   "n": 11,
+   "refs": [],
+   "official": ""
+  }
+ }
+}

@@ -2,16 +2,20 @@ import { Link } from 'react-router-dom'
 import Dial from '../components/Dial'
 import { CERT_LIST } from '../lib/certs'
 import { setCert } from '../lib/store'
+import ImageFig from '../components/ImageFig'
 
 export default function Home() {
   return (
     <div className="page home">
       <section className="hero">
-        <h1>Tune the dial.<br />Learn the band plan.<br />Pass the exam.</h1>
-        <p className="lede">
-          This is a working transceiver front panel. Turn the knob and the display tells you what band you are on and who
-          is allowed to transmit there. The same facts show up on the Technician, General, and Extra exams.
-        </p>
+        <div>
+          <h1>Tune the dial.<br />Learn the band plan.<br />Pass the exam.</h1>
+          <p className="lede">
+            This is a working transceiver front panel. Turn the knob and the display tells you what band you are on and who
+            is allowed to transmit there. The same facts show up on the Technician, General, and Extra exams.
+          </p>
+        </div>
+        <div className="hero-photo"><ImageFig name="shack" caption="A ham shack at night. Yours will look like this soon." /></div>
       </section>
 
       <Dial />

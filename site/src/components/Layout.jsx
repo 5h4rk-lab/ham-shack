@@ -1,7 +1,7 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useStore } from '../lib/store'
 
-const LINKS = [['/', 'Shack', true], ['/learn', 'Learn'], ['/drill', 'Drill'], ['/exam', 'Exam'], ['/lab', 'Lab'], ['/progress', 'Progress']]
+const LINKS = [['/', 'Shack', true], ['/learn', 'Learn'], ['/drill', 'Drill'], ['/exam', 'Exam'], ['/lab', 'Lab'], ['/ref', 'Reference'], ['/progress', 'Progress']]
 
 export default function Layout() {
   const { streak } = useStore()
@@ -25,7 +25,7 @@ export default function Layout() {
       </header>
       <main id="main"><Outlet /></main>
       <footer className="foot">
-        <p>Question pools are public domain, published by the NCVEC Question Pool Committee. Checked against the pools effective for exams today. Always confirm dates with your VE team. 73 and good luck.</p>
+        <p>Question pools are public domain, published by the NCVEC Question Pool Committee. Checked against the pools effective for exams today. Always confirm dates with your VE team. 73 and good luck. <Link to="/credits">Photo credits</Link>.</p>
       </footer>
     </>
   )

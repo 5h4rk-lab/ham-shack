@@ -41,8 +41,10 @@ The home page *is* the radio. The seven-segment display, the tuning knob, and th
 | **Waterfall** | CW streaks, SSB blobs, FM carriers, a 10 m beacon, WWV ticks, and an FT8 cluster on 14.074. Click any trace to tune to it. |
 | **Audio** | Hit "Turn on audio" and the same signals become Web Audio: CW you can actually copy, garbled SSB, FT8 warble, band noise. |
 | **Tuning quests** | "Find the 2 m calling frequency." "Land inside the 10 m beacon sub-band." Each one is a real exam question in disguise. |
-| **Learn** | The study guides, split into one lesson per subelement, with the figures the questions refer to. |
-| **Drill** | Spaced repetition (Leitner boxes). Misses come back sooner. Keys: A to D to answer, Enter for next. |
+| **Learn** | The study guide as lessons, with a **topic sidebar** always on screen, a big "All topics" button, Elmer's notes, photos, and **under every group heading**: the official syllabus topic, the **FCC rules behind its questions (linked to ecfr.gov)**, and a button to practice just that group. |
+| **Concept labs** | Nine hands-on explainers inside the lessons: a circuit playground (Ohm's law, series vs parallel), decibel slider, wavelength and antenna length, polarization, a day/night skywave explorer, an SWR/feed line lab, modulation bandwidth, a "get into the repeater" simulator, and a schematic-symbol quiz. Each lists the exam questions it answers. |
+| **Drill** | Topic chips with **questions left** per topic and per group, spaced repetition (Leitner boxes), "topic cleared" screens, and the rule section behind every answer. Keys: A to D to answer, Enter for next. |
+| **Reference** | One-screen revision: a US band chart colored by license class, Q codes, phonetic alphabet, formulas and prefixes, and a searchable glossary. |
 | **Mock exam** | Exactly how a VE team builds it: **one question from every question group**. 35 questions and 26 to pass for Technician and General, 50 and 37 for Extra. |
 | **Lab** | Morse trainer (Koch method), Ohm's law, wavelength and antenna lengths, decibels, phonetic alphabet. |
 | **Progress** | An analog S-meter that swings as you master the pool. Everything stays in your browser. |
@@ -51,13 +53,16 @@ The home page *is* the radio. The seven-segment display, the tuning knob, and th
   <img src="assets/drill-demo.gif" alt="A question shown as a QSL card, with a wrong answer in red and the right answer in green." width="620">
 </p>
 
-<details>
+<details open>
 <summary>More screenshots</summary>
 <br>
 <p align="center">
-  <img src="assets/screens/shack.png" alt="The Shack home page" width="700"><br><br>
-  <img src="assets/screens/lesson.png" alt="A lesson page" width="700"><br><br>
-  <img src="assets/screens/lab.png" alt="Ohm's law calculator in the lab" width="700"><br><br>
+  <img src="assets/screens/lesson.png" alt="A lesson with the topic sidebar, an Elmer note, and the group bar showing the official syllabus text" width="720"><br><br>
+  <img src="assets/screens/lab-ohm.png" alt="The circuit playground showing two resistors in parallel" width="560"><br><br>
+  <img src="assets/screens/lab-repeater.png" alt="The get-into-the-repeater lab" width="560"><br><br>
+  <img src="assets/screens/drill.png" alt="Drill with topic chips, questions left, and the rule behind the answer" width="720"><br><br>
+  <img src="assets/screens/reference.png" alt="The band chart in the reference section" width="720"><br><br>
+  <img src="assets/screens/shack.png" alt="The Shack home page" width="720"><br><br>
   <img src="assets/screens/mobile.png" alt="Mobile layout" width="260">
 </p>
 </details>
@@ -107,13 +112,26 @@ Read the Technician guide once. Register for a free FCC Registration Number (FRN
 
 ---
 
+## How complete is it? (measured, not promised)
+
+`python3 scripts/audit_coverage.py technician` checks every pool question: does the guide's section for that subelement state the correct answer?
+
+| Class | Questions whose answer is stated in the guide | Verdict |
+|---|---|---|
+| **Technician** | 367 of 409 pass the automatic check. The other 42 were read by hand: all are phrasing or notation differences (for example "Ω" against "ohm"), none is a missing concept. | Complete against the pool. Every "all these choices are correct" question now lists each choice. |
+| **General** | 81 of 423 | Condensed summary. The Drill and Mock exam cover the whole pool, the guide does not teach every question. |
+| **Extra** | 146 of 599 | Condensed summary, same caveat. |
+
+Stated plainly: Technician is concept-complete against the 2026 to 2030 pool. General and Extra are not yet, and the site says so on those lessons. Expanding them to Technician depth is the next big job. A check like this proves the facts are *present*, not that they *click*, so the labs and Elmer's notes carry the "why".
+
 ## What is in the box
 
 ```
 ham-radio/
 ├── README.md
 ├── CLAUDE.md                 notes for AI pair-programming sessions in this repo
-├── data/                     the three question pools as JSON, plus the exam figures
+├── data/                     question pools (JSON), exam figures, official syllabus group titles,
+│                             Part 97 section names, photo credits
 ├── study-guides/
 │   ├── technician/           guide (.md) and PDF
 │   ├── general/
@@ -121,6 +139,9 @@ ham-radio/
 ├── site/                     the interactive web app (React + Vite)
 ├── scripts/
 │   ├── build_pdfs.py         Markdown + pool -> styled PDF via pandoc and Chromium
+│   ├── build_groups.py       group titles + FCC rule sections per group -> data/groups.json
+│   ├── audit_coverage.py     does the guide actually teach each question?
+│   ├── fetch_images.py       finds and downloads freely-licensed photos, records credits
 │   └── make_banner.py        regenerates the animated banner above
 ├── projects/                 your ham builds go here (see below)
 ├── assets/                   banner, GIFs, screenshots
@@ -149,6 +170,7 @@ Pulled from [jeffallan/claude-skills](https://github.com/jeffallan/claude-skills
 
 ## Honest fine print
 
+* **Rule links** go to the live text on [ecfr.gov](https://www.ecfr.gov/). Section titles in `data/part97-sections.json` are plain-English labels; the eCFR text is the authority.
 * **Check dates.** Question pools rotate every four years (Technician in 2026, General in 2027, Extra in 2028). Confirm the pool in force with your VE team or at [ncvec.org](https://ncvec.org/) before your exam. The Technician data here includes the NCVEC errata of February 19, 2026.
 * **The study guides are my own words, not the official pool text.** The pool itself is the authority; the appendix reproduces it. If a guide statement and the pool disagree, the pool wins. Please file an issue.
 * **Frequencies in the simulator** follow US Part 97 privileges as of the pools above. The signals are simulated. Do not treat the simulator as a legal reference; the FCC rules are.
@@ -158,6 +180,8 @@ Pulled from [jeffallan/claude-skills](https://github.com/jeffallan/claude-skills
 
 * Question pools: **NCVEC Question Pool Committee** ([Technician 2026 to 2030](https://ncvec.org/index.php/2026-2030-technician-question-pool), public domain). Announcement: [ARRL](https://www.arrl.org/news/new-technician-class-question-pool-released-effective-july-1-2026).
 * Machine-readable pools and exam figures: [russolsen/ham_radio_question_pool](https://github.com/russolsen/ham_radio_question_pool) (Apache-2.0). See `NOTICE`.
+* Photos: [Wikimedia Commons](https://commons.wikimedia.org/) (public domain, CC0, CC BY, CC BY-SA) and NASA. Every photo shows its author and license under it, and the site has a full credits page. `scripts/fetch_images.py` refuses anything that is not freely licensed.
+* Official group titles: NCVEC Technician syllabus (Feb 19 2026 revision).
 * Fonts: Barlow Condensed, Atkinson Hyperlegible, IBM Plex Mono (SIL OFL) via Fontsource.
 * Agent skills: [jeffallan/claude-skills](https://github.com/jeffallan/claude-skills) (MIT).
 
