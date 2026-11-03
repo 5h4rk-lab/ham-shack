@@ -11,3 +11,5 @@ site/public/guides/
 .swarm/
 ruvector.db
 *.rvf
+.vercel
+.env*

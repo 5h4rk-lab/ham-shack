@@ -14,6 +14,8 @@
 
 A home base for everything ham radio: **pass the exams, then build things on the air.**
 
+### 👉 Live site: **[ham-shack-smoky.vercel.app](https://ham-shack-smoky.vercel.app)**
+
 It started as "give me everything I need to pass the Technician exam" and grew into a small lab:
 
 * **Study guides as PDFs** for Technician, General, and Extra, kept separate, each with the *entire* question pool and answers in the back.
@@ -69,7 +71,11 @@ npm run dev        # http://127.0.0.1:5173
 npm run build      # static files in site/dist, host anywhere
 ```
 
-It is a static site with hash routing, so any file host works (Vercel, Netlify, Cloudflare Pages, a USB stick). GitHub Pages needs a public repo or a paid plan for private ones.
+It is a static site with hash routing, so any file host works. The live copy runs on Vercel. `vercel.json` at the repo root sets the build (`cd site && npm run build`, output `site/dist`), so deploying is one command from the repo root:
+
+```bash
+vercel deploy --prod
+```
 
 ---
 
