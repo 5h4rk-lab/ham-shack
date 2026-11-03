@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { describe } from '../lib/bandplan'
 
 // Hands-on explainers. Each one maps to exam questions, listed in the "exam" line.
@@ -309,4 +310,137 @@ export function SymbolLab() {
   )
 }
 
-export const LABS = { ohm: OhmLab, db: DbLab, wave: WaveLab, polar: PolarLab, sky: SkyLab, swr: SwrLab, mod: ModLab, repeater: RepeaterLab, symbols: SymbolLab }
+
+/* ---------- Antenna picker ---------- */
+const GOALS = [
+  { id: 'repeater', q: 'Talk on my local FM repeater from home', picks: [['groundplane', 'Cheapest and simplest. Omni and vertical, which matches FM.', 'build-groundplane'], ['jpole', 'No radials. Easy to hang in a window, attic or tree.', 'build-jpole'], ['yagi', 'Aim a small vertical Yagi if the repeater is 30 miles or more away.']], skip: 'A horizontal dipole or loop: the polarization is wrong for FM.' },
+  { id: 'handheld', q: 'Get more range from my handheld', picks: [['whips', 'Swap the rubber duck for a 19 inch quarter-wave whip. Biggest upgrade per dollar in ham radio.'], ['groundplane', 'At home, a real antenna on a window or balcony beats the duck by a mile.', 'build-groundplane'], ['jpole', 'A roll-up J-pole in a window works from a hotel room too.', 'build-jpole']], skip: 'Holding the radio inside a car with no outside antenna. The metal body shields it.' },
+  { id: 'hf', q: 'Get on HF with a Technician license (10 m voice, CW on 40 and 15 m)', picks: [['dipole', 'A 10 meter dipole is only 16 feet long and gives you SSB voice at 28.3 to 28.5 MHz.', 'build-dipole'], ['efhw', 'An end-fed half-wave gives you several bands on one wire.'], ['groundplane', 'A vertical with elevated radials is low-profile and has a low takeoff angle (HF versions need many radials).']], skip: 'Large multi-band beams and towers, until you want to chase distance on higher classes.' },
+  { id: 'satellite', q: 'Work satellites like the ISS or the FM satellites', picks: [['yagi', 'A small handheld Yagi, aimed by hand as the satellite passes. Circular polarization is best.'], ['satellite', 'Read how Doppler shift and spin fading change your operating.']], skip: 'A fixed, low-gain whip: you will only hear the strongest passes.' },
+  { id: 'weak', q: 'Weak-signal VHF and UHF (SSB, CW, 6 m, 2 m)', picks: [['yagi', 'Horizontal Yagi, aimed. This is why weak-signal work is horizontal.'], ['quad', 'A quad gives similar gain, is quiet, and handles ice and wind.']], skip: 'A vertical omni. Wrong polarization and no gain.' },
+  { id: 'scanner', q: 'Receive everything (scanner or SDR)', picks: [['discone', 'A discone covers a huge range of frequencies in one antenna.'], ['logperiodic', 'A log-periodic gives gain and covers a wide band when you need to hear far.']], skip: 'A tuned single-band antenna. It will be deaf outside its band.' },
+  { id: 'apartment', q: 'I live in an apartment or have an HOA', picks: [['magloop', 'Compact, indoors or on a balcony. Narrow bandwidth, so you retune it.'], ['jpole', 'A roll-up J-pole in a window works well on VHF/UHF.', 'build-jpole'], ['dipole', 'A 10 meter dipole is only 16 feet. It fits across a balcony or in an attic.', 'build-dipole']], skip: 'Towers and big beams. Check your lease or HOA first; PRB-1 does not override private contracts.' },
+  { id: 'portable', q: 'Emergency, go-bag, or camping', picks: [['jpole', 'The roll-up J-pole weighs ounces and needs no radials.', 'build-jpole'], ['efhw', 'One wire, one support, several bands.'], ['whips', 'Telescoping whip on the handheld for quick setups.']], skip: 'Heavy Yagis or big loops.' },
+  { id: 'fox', q: 'Hunt a hidden transmitter (direction finding)', picks: [['yagi', 'A small handheld Yagi tells you which way the signal is strongest.'], ['quad', 'A small loop is another favorite for close-in hunting.']], skip: 'Omni antennas. They cannot tell you which direction anything is.' },
+  { id: 'cheap', q: 'Spend as little as possible', picks: [['groundplane', 'About $10 for 2 meters.', 'build-groundplane'], ['dipole', 'About $20 for HF.', 'build-dipole'], ['jpole', 'About $15, rolls up in your pocket.', 'build-jpole']], skip: 'Anything with a rotator. That is where the money goes.' },
+]
+export function AntPicker() {
+  const [g, setG] = useState(GOALS[0])
+  return (
+    <Lab title="Antenna picker" intro="Pick what you want to do." exam="T9A, T3A, T8B">
+      <div className="presets">{GOALS.map((x) => <button key={x.id} className={`pb sm ${g.id === x.id ? 'on' : ''}`} onClick={() => setG(x)}>{x.q}</button>)}</div>
+      <h4 className="pickhead">Best choices for: {g.q}</h4>
+      <ol className="picks">
+        {g.picks.map(([id, why, build], i) => (
+          <li key={id}>
+            <b>{i + 1}</b>
+            <span><Link to={`/antennas/types?g=${id}`}>{id === 'whips' ? 'Mobile whip or telescoping whip' : id === 'efhw' ? 'End-fed half-wave' : id === 'logperiodic' ? 'Log-periodic' : id === 'magloop' ? 'Magnetic loop' : id === 'groundplane' ? 'Ground plane' : id === 'jpole' ? 'J-pole / Slim Jim' : id === 'satellite' ? 'Satellite notes' : id.charAt(0).toUpperCase() + id.slice(1)}</Link>. {why}
+              {build && <> <Link className="pb sm on" to={`/antennas/${build}`}>Build it</Link></>}</span>
+          </li>))}
+      </ol>
+      <p className="callout bad"><b>Skip:</b> {g.skip}</p>
+    </Lab>
+  )
+}
+
+/* ---------- Cut-length calculator ---------- */
+const inch = (ft) => {
+  const total = ft * 12
+  if (total < 24) return `${fmt(total, 1)} in`
+  const f = Math.floor(ft), i = (ft - f) * 12
+  return `${f} ft ${fmt(i, 1)} in`
+}
+const PRE = [['10 m', 28.4], ['15 m (CW)', 21.1], ['40 m (CW)', 7.05], ['6 m', 52], ['2 m', 146.52], ['70 cm', 446]]
+export function AntCalc({ initial }) {
+  const [kind, setKind] = useState(initial || 'dipole')
+  const [f, setF] = useState(initial === 'ground' || initial === 'jpole' ? 146.52 : 28.4)
+  const [vf, setVf] = useState(0.91)
+  const lam_in = 11811 / f
+  const D = { total: 468 / f, leg: 234 / f }
+  const G = { vert: 234 / f, radial: (234 / f) * 1.05 }
+  const J = { stub: (0.25 * lam_in * vf) / 12, rad: (0.5 * lam_in * 0.95) / 12 }
+  const diagram = {
+    dipole: <svg viewBox="0 0 300 90"><line x1="20" y1="30" x2="280" y2="30" stroke="#ece3cb" strokeWidth="4" /><rect x="140" y="24" width="20" height="12" fill="#ffb43a" /><line x1="150" y1="36" x2="150" y2="80" stroke="#8fa398" strokeWidth="3" /><text x="80" y="20" className="svgs">leg {inch(D.leg)}</text><text x="200" y="20" className="svgs">leg {inch(D.leg)}</text><text x="158" y="76" className="svgs">coax + choke</text></svg>,
+    ground: <svg viewBox="0 0 300 150"><line x1="150" y1="10" x2="150" y2="85" stroke="#ece3cb" strokeWidth="4" />{[[-1, -1], [1, -1], [-1, 1], [1, 1]].map(([a], k) => <line key={k} x1="150" y1="85" x2={150 + a * 80} y2="130" stroke="#8fa398" strokeWidth="3" opacity={k > 1 ? 0.5 : 1} />)}<text x="160" y="40" className="svgs">vertical {inch(G.vert)}</text><text x="205" y="118" className="svgs">4 radials, {inch(G.radial)}</text><circle cx="150" cy="85" r="5" fill="#ffb43a" /></svg>,
+    jpole: <svg viewBox="0 0 300 170"><line x1="130" y1="10" x2="130" y2="150" stroke="#ece3cb" strokeWidth="4" /><line x1="160" y1="100" x2="160" y2="150" stroke="#8fa398" strokeWidth="4" /><line x1="130" y1="150" x2="160" y2="150" stroke="#ffb43a" strokeWidth="4" /><circle cx="145" cy="132" r="4" fill="#e5432d" /><text x="172" y="60" className="svgs">radiator {inch(J.rad)}</text><text x="172" y="128" className="svgs">stub {inch(J.stub)}</text><text x="172" y="145" className="svgs">feed tap ~1.5 in above the short</text></svg>,
+  }
+  return (
+    <Lab title="Cut-length calculator" intro="Pick the antenna, pick your frequency. It gives the lengths. Cut a little long, then trim while you watch the SWR meter." exam="T3B06, T9A05, T9A08">
+      <div className="seg-toggle">{[['dipole', 'Dipole'], ['ground', 'Ground plane'], ['jpole', 'J-pole (ladder line)']].map(([k, n]) => <button key={k} className={`pb sm ${kind === k ? 'on' : ''}`} onClick={() => setKind(k)}>{n}</button>)}</div>
+      <div className="presets">{PRE.map(([n, v]) => <button key={n} className="pb sm" onClick={() => setF(v)}>{n} {v}</button>)}</div>
+      <Slider label="Frequency" value={f} set={setF} min={1.8} max={450} step={0.05} unit="MHz" />
+      {kind === 'jpole' && <label className="sl"><span>Line velocity factor</span><select value={vf} onChange={(e) => setVf(+e.target.value)}><option value={0.91}>450 Ω window line (0.91)</option><option value={0.82}>300 Ω twin-lead (0.82)</option><option value={0.95}>Spaced wire in air (0.95)</option></select></label>}
+      <div className="lab-grid">
+        <div className="calcsvg">{diagram[kind]}</div>
+        <dl className="readouts">
+          {kind === 'dipole' && <><div><dt>Total length</dt><dd>{inch(D.total)}</dd></div><div><dt>Each leg</dt><dd>{inch(D.leg)}</dd></div><div><dt>Cut each leg (5% long)</dt><dd>{inch(D.leg * 1.05)}</dd></div></>}
+          {kind === 'ground' && <><div><dt>Vertical element</dt><dd>{inch(G.vert)}</dd></div><div><dt>Cut it</dt><dd>{inch(G.vert + 0.25 / 12)}</dd></div><div><dt>Each radial (4)</dt><dd>{inch(G.radial)}</dd></div></>}
+          {kind === 'jpole' && <><div><dt>Stub (both wires)</dt><dd>{inch(J.stub)}</dd></div><div><dt>Radiator (one wire)</dt><dd>{inch(J.rad)}</dd></div><div><dt>Cut the line to</dt><dd>{inch(J.stub + J.rad + 3 / 12)}</dd></div></>}
+        </dl>
+      </div>
+      <p className="small">{kind === 'dipole' ? 'Total length = 468 ÷ MHz feet. Each leg is half. Start 5% long, fold the ends back, and trim.' : kind === 'ground' ? 'Vertical = 234 ÷ MHz feet. Radials a little longer and drooped about 45 degrees.' : 'Stub = 0.25 wavelength × velocity factor; radiator = 0.5 wavelength × 0.95. Starting values: every build trims a bit differently.'}</p>
+    </Lab>
+  )
+}
+
+/* ---------- Trim the dipole ---------- */
+export function TrimLab() {
+  const target = 28.4
+  const [leg, setLeg] = useState(104) // inches, deliberately long, like a first cut
+  const f0 = 234 / (leg / 12)
+  const swr = (f) => {
+    const X = 580 * (f / f0 - f0 / f), R = 55
+    const g = Math.sqrt(((R - 50) ** 2 + X * X) / ((R + 50) ** 2 + X * X))
+    return (1 + g) / (1 - g)
+  }
+  const lo = 27.6, hi = 29.2, W = 520, H = 170
+  const X = (f) => ((f - lo) / (hi - lo)) * W
+  const Y = (v) => H - ((Math.min(v, 6) - 1) / 5) * (H - 28) - 8
+  const pts = Array.from({ length: 161 }, (_, i) => { const f = lo + ((hi - lo) * i) / 160; return `${X(f)},${Y(swr(f))}` }).join(' ')
+  const at = swr(target)
+  const hint = Math.abs(f0 - target) < 0.04 ? 'Resonant right on target. Lock it down.' : f0 < target ? `Resonance is at ${fmt(f0, 2)} MHz, below your target: the antenna is too long. Shorten each leg about ${fmt(Math.abs(leg - (234 / target) * 12), 1)} inches.` : `Resonance is at ${fmt(f0, 2)} MHz, above your target: too short. Lengthen each leg about ${fmt(Math.abs(leg - (234 / target) * 12), 1)} inches.`
+  return (
+    <Lab title="Trim the dipole" intro="Your first cut is deliberately long. Slide each leg shorter and watch where the SWR dip lands. The green strip is the Technician 10 meter voice segment." exam="T7C04, T7C06, T9A05">
+      <Slider label="Length of each leg" value={leg} set={setLeg} min={92} max={110} step={0.25} unit="in" />
+      <svg viewBox={`0 0 ${W} ${H + 24}`} className="trim" role="img" aria-label="SWR against frequency">
+        <rect x={X(28.3)} y="0" width={X(28.5) - X(28.3)} height={H} fill="#2c4a1d" opacity=".7" />
+        {[1, 2, 3, 6].map((v) => <g key={v}><line x1="0" x2={W} y1={Y(v)} y2={Y(v)} stroke="#34453d" /><text x="4" y={Y(v) - 3} className="svgs">{v}:1</text></g>)}
+        {[27.8, 28.0, 28.2, 28.4, 28.6, 28.8, 29.0].map((f) => <text key={f} x={X(f)} y={H + 16} textAnchor="middle" className="svgs">{f}</text>)}
+        <line x1={X(target)} x2={X(target)} y1="0" y2={H} stroke="#e5432d" strokeDasharray="4 4" />
+        <polyline points={pts} fill="none" stroke="#ffb43a" strokeWidth="3" />
+      </svg>
+      <dl className="readouts four"><div><dt>Leg length</dt><dd>{inch(leg / 12)}</dd></div><div><dt>Resonates at</dt><dd>{fmt(f0, 2)} MHz</dd></div><div><dt>SWR at 28.4</dt><dd>{fmt(at, 2)} : 1</dd></div></dl>
+      <p className={`callout ${at < 1.5 ? 'good' : ''}`}>{hint}</p>
+      <p className="small">Simplified model of a wire dipole. Real antennas shift with height, nearby metal and wire type, which is exactly why you trim against a meter.</p>
+    </Lab>
+  )
+}
+
+/* ---------- Radiation patterns ---------- */
+const PAT = {
+  Dipole: { f: (p) => Math.abs(Math.cos(p)), gain: '2.15 dBi', note: 'Figure-eight. Strongest broadside to the wire (up and down in this top view), nulls off the ends. Exam: T9A10.' },
+  Vertical: { f: () => 1, gain: '0 to 3 dBi', note: 'Omnidirectional in the horizontal plane: the same in every compass direction. Perfect for repeaters.' },
+  Yagi: { f: (p) => 0.07 + 0.93 * ((1 + Math.cos(p)) / 2) ** 4, gain: 'about 6 to 12 dBi', note: 'A forward lobe with a small tail behind. More elements, a narrower lobe, more gain. Has to be aimed.' },
+  Loop: { f: (p) => Math.abs(Math.cos(p)), gain: 'about 1 to 2 dBi', note: 'A small loop has a figure-eight too, with deep nulls off its sides. Handy for rejecting local noise and for direction finding.' },
+}
+export function PatternsLab() {
+  const [k, setK] = useState('Dipole')
+  const R = 86
+  const pts = Array.from({ length: 121 }, (_, i) => { const p = (i / 120) * Math.PI * 2; const r = PAT[k].f(p); return `${110 + R * r * Math.sin(p)},${110 - R * r * Math.cos(p)}` }).join(' ')
+  return (
+    <Lab title="Radiation patterns" intro="Top-down view. The antenna sits in the middle. The bigger the shape in a direction, the stronger the signal that way." exam="T9A01, T9A10, T9A11">
+      <div className="seg-toggle">{Object.keys(PAT).map((n) => <button key={n} className={`pb sm ${k === n ? 'on' : ''}`} onClick={() => setK(n)}>{n}</button>)}</div>
+      <div className="lab-grid">
+        <svg viewBox="0 0 220 220" className="polarplot" role="img" aria-label={`${k} pattern`}>
+          {[0.33, 0.66, 1].map((r) => <circle key={r} cx="110" cy="110" r={R * r} fill="none" stroke="#34453d" />)}
+          <line x1="110" y1="14" x2="110" y2="206" stroke="#34453d" /><line x1="14" y1="110" x2="206" y2="110" stroke="#34453d" />
+          <polygon points={pts} fill="#ffb43a" fillOpacity=".25" stroke="#ffb43a" strokeWidth="3" />
+          <circle cx="110" cy="110" r="4" fill="#ece3cb" /><text x="112" y="12" className="svgs">N</text>
+        </svg>
+        <div className="lab-side"><dl className="readouts"><div><dt>Typical gain</dt><dd>{PAT[k].gain}</dd></div></dl><p className="callout">{PAT[k].note}</p></div>
+      </div>
+    </Lab>
+  )
+}
+
+export const LABS = { ohm: OhmLab, db: DbLab, wave: WaveLab, polar: PolarLab, sky: SkyLab, swr: SwrLab, mod: ModLab, repeater: RepeaterLab, symbols: SymbolLab, antpicker: AntPicker, antcalc: AntCalc, trim: TrimLab, patterns: PatternsLab }

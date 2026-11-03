@@ -2,9 +2,7 @@ import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { useEffect, useMemo } from 'react'
 import CertTabs from '../components/CertTabs'
 import TopicNav from '../components/TopicNav'
-import GroupBar from '../components/GroupBar'
-import ImageFig from '../components/ImageFig'
-import { LABS } from '../components/labs'
+import LessonBody from '../components/LessonBody'
 import { CERTS, SUB_ORDER } from '../lib/certs'
 import { lessons } from '../lib/guides'
 import { usePool } from '../lib/usePool'
@@ -15,25 +13,6 @@ const PDF = { technician: 'Technician-Study-Guide.pdf', general: 'General-Study-
 const Notice = ({ cert }) => cert === 'technician' ? null : (
   <p className="notice"><b>Heads up:</b> the {cert === 'general' ? 'General' : 'Extra'} lessons are condensed summaries of the big ideas, not a full concept-by-concept course like Technician. The Drill and Mock exam cover <b>every</b> question in the pool, and each answer links to the rule behind it.</p>
 )
-const MARK = /<!--\s*(lab|img|group):([\w-]+)(?:\s+([^>]*?))?\s*-->/g
-
-// Lesson HTML with <!-- lab:x -->, <!-- img:x caption -->, <!-- group:T1A --> turned into widgets.
-function LessonBody({ cert, html }) {
-  const out = []
-  let last = 0, m, n = 0
-  MARK.lastIndex = 0
-  while ((m = MARK.exec(html))) {
-    if (m.index > last) out.push(<div key={n++} className="prose" dangerouslySetInnerHTML={{ __html: html.slice(last, m.index) }} />)
-    const [, kind, name, extra] = m
-    if (kind === 'lab') { const L = LABS[name]; if (L) out.push(<L key={n++} />) }
-    else if (kind === 'img') out.push(<ImageFig key={n++} name={name} caption={extra} />)
-    else out.push(<GroupBar key={n++} cert={cert} group={name} />)
-    last = m.index + m[0].length
-  }
-  out.push(<div key={n++} className="prose" dangerouslySetInnerHTML={{ __html: html.slice(last) }} />)
-  return <div className="lessonbody">{out}</div>
-}
-
 export default function Learn() {
   const { id } = useParams()
   const [params] = useSearchParams()

@@ -20,12 +20,47 @@
   "license": "CC BY-SA 3.0",
   "source": "https://commons.wikimedia.org/wiki/File:Componentes_electronicos.jpg"
  },
+ "discone": {
+  "file": "img/discone.jpg",
+  "title": "File:Discone-solid-copper-700Mhz-2Ghz.jpg",
+  "author": "Adamantios",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Discone-solid-copper-700Mhz-2Ghz.jpg"
+ },
+ "fanvertical": {
+  "file": "img/fanvertical.jpg",
+  "title": "File:W4BD 4020 Fan Vertical Antenna Elevated With Radials.jpg",
+  "author": "Marcusboyd18",
+  "license": "CC BY 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:W4BD_4020_Fan_Vertical_Antenna_Elevated_With_Radials.jpg"
+ },
+ "foxhunt": {
+  "file": "img/foxhunt.jpg",
+  "title": "File:Eun Kyoung Sung from South Korea at the 2004 ARDF World Championship.jpg",
+  "author": "Michal Voráček of Praha, Czech Republic",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Eun_Kyoung_Sung_from_South_Korea_at_the_2004_ARDF_World_Championship.jpg"
+ },
+ "groundplane": {
+  "file": "img/groundplane.jpg",
+  "title": "File:Antenne Ground plane 01.jpg",
+  "author": "F1jmm",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Antenne_Ground_plane_01.jpg"
+ },
  "handheld": {
   "file": "img/handheld.jpg",
   "title": "File:Baofeng UV-5R transceiver.jpg",
   "author": "Варвара Каминская",
   "license": "CC BY-SA 4.0",
   "source": "https://commons.wikimedia.org/wiki/File:Baofeng_UV-5R_transceiver.jpg"
+ },
+ "invertedv": {
+  "file": "img/invertedv.gif",
+  "title": "File:Figure D-10 Inverted Vee antenna (FM 7-93 1995).gif",
+  "author": "U.S. Army",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Figure_D-10_Inverted_Vee_antenna_(FM_7-93_1995).gif"
  },
  "ionosphere": {
   "file": "img/ionosphere.jpg",
@@ -41,12 +76,33 @@
   "license": "Public domain",
   "source": "https://commons.wikimedia.org/wiki/File:ISS-56_International_Space_Station_fly-around_(01).jpg"
  },
+ "jpole": {
+  "file": "img/jpole.png",
+  "title": "File:J-pole Antenna and variations of same..png",
+  "author": "Crcwiki",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:J-pole_Antenna_and_variations_of_same..png"
+ },
  "ladderline": {
   "file": "img/ladderline.jpg",
   "title": "File:LadderlineW3NP.JPG",
   "author": "LuckyLouie",
   "license": "CC BY-SA 3.0",
   "source": "https://commons.wikimedia.org/wiki/File:LadderlineW3NP.JPG"
+ },
+ "logperiodic": {
+  "file": "img/logperiodic.jpg",
+  "title": "File:Rotatable log-periodic antenna.jpg",
+  "author": "Josh Plueger, USAF",
+  "license": "Public domain",
+  "source": "https://commons.wikimedia.org/wiki/File:Rotatable_log-periodic_antenna.jpg"
+ },
+ "loop": {
+  "file": "img/loop.jpg",
+  "title": "File:MF Loop antenna.jpg",
+  "author": "Chrumps",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:MF_Loop_antenna.jpg"
  },
  "morse": {
   "file": "img/morse.jpg",
@@ -69,6 +125,13 @@
   "license": "CC BY-SA 3.0",
   "source": "https://commons.wikimedia.org/wiki/File:UHF_PL_Connector.jpg"
  },
+ "quad": {
+  "file": "img/quad.png",
+  "title": "File:Cubical-quad.png",
+  "author": "Fellegis",
+  "license": "CC BY-SA 4.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Cubical-quad.png"
+ },
  "repeater": {
   "file": "img/repeater.jpg",
   "title": "File:Wm4t amateur radio tower.jpg",
@@ -82,6 +145,13 @@
   "author": "Roland Brierre",
   "license": "CC BY-SA 3.0",
   "source": "https://commons.wikimedia.org/wiki/File:Shack_radio-amateur_nuit.jpg"
+ },
+ "slimjim": {
+  "file": "img/slimjim.png",
+  "title": "File:Antenna-slim-jim-diagram.png",
+  "author": "Ryddarn",
+  "license": "CC BY-SA 3.0",
+  "source": "https://commons.wikimedia.org/wiki/File:Antenna-slim-jim-diagram.png"
  },
  "spectrum": {
   "file": "img/spectrum.jpg",

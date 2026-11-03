@@ -56,7 +56,7 @@ def get(key, title):
     (i,) = info([title])
     if not i["free"]:
         raise SystemExit(f"license not allowed: {i['license']}")
-    ext = ".png" if "png" in i["mime"] else ".jpg"
+    ext = {"image/png": ".png", "image/gif": ".gif", "image/svg+xml": ".png"}.get(i["mime"], ".jpg")
     OUT.mkdir(parents=True, exist_ok=True)
     req = urllib.request.Request(i["thumb"], headers={"User-Agent": UA})
     for t in range(5):

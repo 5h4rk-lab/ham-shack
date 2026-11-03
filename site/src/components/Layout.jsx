@@ -1,7 +1,7 @@
 import { Link, NavLink, Outlet } from 'react-router-dom'
 import { useStore } from '../lib/store'
 
-const LINKS = [['/', 'Shack', true], ['/learn', 'Learn'], ['/drill', 'Drill'], ['/exam', 'Exam'], ['/lab', 'Lab'], ['/ref', 'Reference'], ['/progress', 'Progress']]
+const LINKS = [['/', 'Shack', true], ['/learn', 'Learn'], ['/drill', 'Drill'], ['/exam', 'Exam'], ['/lab', 'Lab'], ['/antennas', 'Antennas'], ['/ref', 'Reference'], ['/progress', 'Progress']]
 
 export default function Layout() {
   const { streak } = useStore()

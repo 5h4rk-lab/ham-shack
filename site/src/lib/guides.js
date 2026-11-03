@@ -27,3 +27,19 @@ export function lessons(cert) {
     return { id, heading, title: m ? m[2] : heading, examQs: m?.[3] ? +m[3] : null, html, groupIds }
   })
 }
+
+// The antenna handbook: same markdown pipeline, headings carry their own ids ({#id}).
+export function antennaLessons() {
+  const text = (byCert.antennas || '').replace(/^---[\s\S]*?---\n/, '')
+  return text.split(/^# /m).filter((p) => p.trim()).map((p, i) => {
+    const nl = p.indexOf('\n')
+    const heading = p.slice(0, nl).trim()
+    const m = heading.match(/^(.*?)\s*\{#([\w-]+)\}$/)
+    const body = p.slice(nl + 1).replace(/\n---\s*$/, '')
+    const html = marked.parse(body)
+      .replace(/<h2>(.*?)\s*\{#([\w-]+)\}<\/h2>/g, '<h2 id="$2">$1</h2>')
+      .replace(/<blockquote>\s*<p><strong>Elmer/g, '<blockquote class="elmer"><p><strong>Elmer')
+    const title = m ? m[1] : heading
+    return { id: m ? m[2] : title.toLowerCase().replace(/\W+/g, '-'), title, html, groupIds: [], badge: String(i + 1) }
+  })
+}

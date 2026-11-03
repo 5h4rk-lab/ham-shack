@@ -38,6 +38,15 @@ export default function Home() {
         ))}
       </section>
 
+      <section className="antpromo rack">
+        <div className="apt">
+          <h2>Build an antenna this weekend</h2>
+          <p>Types, what each is good for, a "which antenna should I use" picker, and three builds for about the price of a pizza: a 2 meter ground plane, a roll-up J-pole, and a 10 meter dipole. Cut lengths are calculated for your frequency.</p>
+          <div className="btnrow"><Link className="pb on" to="/antennas">Open the antenna workshop</Link><Link className="pb" to="/antennas/picker">Which one should I use?</Link></div>
+        </div>
+        <ImageFig name="yagi" caption="A Yagi beam." />
+      </section>
+
       <section className="how">
         <h2>How the pieces fit</h2>
         <ol>

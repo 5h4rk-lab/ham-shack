@@ -44,6 +44,7 @@ The home page *is* the radio. The seven-segment display, the tuning knob, and th
 | **Learn** | The study guide as lessons, with a **topic sidebar** always on screen, a big "All topics" button, Elmer's notes, photos, and **under every group heading**: the official syllabus topic, the **FCC rules behind its questions (linked to ecfr.gov)**, and a button to practice just that group. |
 | **Concept labs** | Nine hands-on explainers inside the lessons: a circuit playground (Ohm's law, series vs parallel), decibel slider, wavelength and antenna length, polarization, a day/night skywave explorer, an SWR/feed line lab, modulation bandwidth, a "get into the repeater" simulator, and a schematic-symbol quiz. Each lists the exam questions it answers. |
 | **Drill** | Topic chips with **questions left** per topic and per group, spaced repetition (Leitner boxes), "topic cleared" screens, and the rule section behind every answer. Keys: A to D to answer, Enter for next. |
+| **Antenna workshop** | Types and what each is good for (with photos and radiation patterns), a **"which antenna should I use" picker**, a cut-length calculator, a **trim-the-dipole SWR lab**, and three cheap builds: a 2 m ground plane (~$10), a roll-up ladder-line J-pole (~$15), and a 10 m dipole (~$20) where Technicians can use voice. Also feed lines, troubleshooting and safety. |
 | **Reference** | One-screen revision: a US band chart colored by license class, Q codes, phonetic alphabet, formulas and prefixes, and a searchable glossary. |
 | **Mock exam** | Exactly how a VE team builds it: **one question from every question group**. 35 questions and 26 to pass for Technician and General, 50 and 37 for Extra. |
 | **Lab** | Morse trainer (Koch method), Ohm's law, wavelength and antenna lengths, decibels, phonetic alphabet. |
@@ -94,6 +95,8 @@ One PDF per license class. They are separate on purpose: you do not need Extra t
 | **General** | [General-Study-Guide.pdf](study-guides/general/General-Study-Guide.pdf) | 35 questions, 26 to pass | 423 questions | Jul 1 2023 to Jun 30 2027 |
 | **Amateur Extra** | [Extra-Study-Guide.pdf](study-guides/extra/Extra-Study-Guide.pdf) | 50 questions, 37 to pass | 599 questions | Jul 1 2024 to Jun 30 2028 |
 
+Not tied to a license class: the **[Antenna Handbook](study-guides/antennas/Antenna-Handbook.pdf)** (types, what each is good for, three cheap builds).
+
 Each PDF has a cover, the study guide (written from the pool, one section per subelement, with a cram sheet), and an appendix with **every question, the right answer, and its CFR reference**, grouped the way the exam is built.
 
 The guides are Markdown in `study-guides/<class>/<class>-guide.md`. Edit the Markdown, then rebuild:
@@ -135,7 +138,8 @@ ham-radio/
 ├── study-guides/
 │   ├── technician/           guide (.md) and PDF
 │   ├── general/
-│   └── extra/
+│   ├── extra/
+│   └── antennas/             the Antenna Handbook (guide + PDF)
 ├── site/                     the interactive web app (React + Vite)
 ├── scripts/
 │   ├── build_pdfs.py         Markdown + pool -> styled PDF via pandoc and Chromium

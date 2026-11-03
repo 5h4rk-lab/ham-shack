@@ -17,6 +17,7 @@ import Lab from './pages/Lab'
 import Progress from './pages/Progress'
 import Reference from './pages/Reference'
 import Credits from './pages/Credits'
+import Antennas from './pages/Antennas'
 
 createRoot(document.getElementById('root')).render(
   <HashRouter>
@@ -33,6 +34,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="ref" element={<Reference />} />
         <Route path="ref/:tab" element={<Reference />} />
         <Route path="credits" element={<Credits />} />
+        <Route path="antennas" element={<Antennas />} />
+        <Route path="antennas/:id" element={<Antennas />} />
         <Route path="*" element={<Home />} />
       </Route>
     </Routes>

@@ -17,7 +17,7 @@ All ham radio work for this user lives in this repo: exam prep, the interactive 
 - Any new transmit-capable project README must state the license class required.
 
 ## Guide markers
-In `study-guides/<class>/*.md`: `<!-- lab:ohm -->` (see `site/src/components/labs.jsx` LABS), `<!-- img:key caption -->` (key from data/image-credits.json), and blockquotes starting `> **Elmer says:**` render as mentor notes. `<!-- group:ID -->` is added by the site automatically. The PDF builder turns the same markers into photos, group bars and "hands-on" pointers.
+In `study-guides/<class>/*.md`: `<!-- lab:ohm -->` (see `site/src/components/labs.jsx` LABS; a word after the name is passed as `initial`, e.g. `<!-- lab:antcalc jpole -->`), `<!-- img:key caption -->` (key from data/image-credits.json), and blockquotes starting `> **Elmer says:**` render as mentor notes. `<!-- group:ID -->` is added by the site automatically. The PDF builder turns the same markers into photos, group bars and "hands-on" pointers.
 
 ## Commands
 - `cd site && npm run dev` / `npm run build`
@@ -26,3 +26,6 @@ In `study-guides/<class>/*.md`: `<!-- lab:ohm -->` (see `site/src/components/lab
 - `python3 scripts/build_groups.py` after any pool/syllabus change (writes data/groups.json used by lessons and PDFs)
 - `python3 scripts/audit_coverage.py technician --list` to find questions the guide does not teach
 - `python3 scripts/fetch_images.py search "query"` / `get key "File:Name.jpg"` for photos. Only freely-licensed Commons images; credits land in data/image-credits.json. Never hotlink or paste unlicensed images, even though the site is personal: it is public on Vercel.
+
+## Antenna handbook
+`study-guides/antennas/antenna-guide.md` powers the site's /antennas section and its own PDF (`Antenna-Handbook.pdf`). Headings carry ids with `{#id}`; the picker (`GOALS` in labs.jsx) links to those ids, so keep them stable. Build lengths come from the same formulas as the exam (468/f dipole, 234/f quarter wave); J-pole numbers are starting values (stub = 0.25 lambda x VF, radiator = 0.5 lambda x 0.95).

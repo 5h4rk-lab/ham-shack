@@ -7,3 +7,5 @@ for (const [d, f] of [['technician', 'Technician'], ['general', 'General'], ['ex
   if (existsSync(src)) copyFileSync(src, new URL(`${f}-Study-Guide.pdf`, out))
   else console.warn(`missing ${f} PDF (run python3 scripts/build_pdfs.py)`)
 }
+const ant = new URL('../study-guides/antennas/Antenna-Handbook.pdf', import.meta.url)
+if (existsSync(ant)) copyFileSync(ant, new URL('Antenna-Handbook.pdf', out))

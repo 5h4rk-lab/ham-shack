@@ -87,6 +87,12 @@ CERTS = {
     ),
 }
 
+CERTS["antennas"] = dict(
+    guide="study-guides/antennas/antenna-guide.md", pool=None, out="study-guides/antennas/Antenna-Handbook.pdf",
+    name="Antenna", cover_title="Antenna<br>Handbook", cover_sub="Types, what each is good for, and three cheap builds",
+    freq="14.200", meta=("All license classes", "12 antenna types · 3 builds"),
+)
+
 CSS = """
 @font-face{font-family:'Atkinson';font-weight:400;src:url('file://%(f)s/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-normal.woff2')}
 @font-face{font-family:'Atkinson';font-weight:400;font-style:italic;src:url('file://%(f)s/atkinson-hyperlegible/files/atkinson-hyperlegible-latin-400-italic.woff2')}
@@ -148,6 +154,7 @@ blockquote.elmer{background:#e4efe3;border-left-color:#4a7c3a}
 blockquote.elmer p:first-child strong:first-child{font-family:'Barlow',sans-serif;font-size:11.5pt;color:#2f5a14}
 figure.photo{margin:.9em 0;break-inside:avoid;max-width:4.6in}
 figure.photo img{width:100%;max-height:2.6in;object-fit:cover;border:1px solid var(--rule)}
+figure.photo.diagram img{object-fit:contain;max-height:none;background:#fff}
 figure.photo figcaption{font-size:8.5pt;color:#44514a}
 figure.photo .credit{display:block;font-size:7pt;color:#7a867e}
 .labnote{margin:.8em 0;padding:.5em .8em;background:#f3ecd9;border-left:5px solid var(--amber);font-size:9.5pt;break-inside:avoid}
@@ -249,12 +256,12 @@ def enhance(body, key):
         if not c:
             return ""
         cap = f'<span>{html.escape(m.group(2) or "")}</span>' if m.group(2) else ""
-        return (f'<figure class="photo"><img src="file://{ROOT}/site/public/{c["file"]}">'
+        return (f'<figure class="photo{" diagram" if c["file"].endswith((".png", ".gif")) else ""}"><img src="file://{ROOT}/site/public/{c["file"]}">'
                 f'<figcaption>{cap}<span class="credit">Photo: {html.escape(c["author"] or "unknown")} · {html.escape(c["license"])} · {html.escape(c["source"])}</span></figcaption></figure>')
 
     body = re.sub(r"<!--\s*img:(\w+)(?:\s+(.*?))?\s*-->", fig, body, flags=re.S)
     body = re.sub(r"<!--\s*lab:(\w+)\s*-->",
-                  r'<p class="labnote"><b>Hands-on:</b> there is an interactive version of this idea in the <b>The Shack</b> website (Learn, then this topic).</p>', body)
+                  r'<p class="labnote"><b>Hands-on:</b> there is an interactive version of this on <b>The Shack</b> website (Learn or Antennas section).</p>', body)
     return body
 
 
@@ -268,17 +275,17 @@ def build_one(key):
     body = enhance(body, key)
     # strip the YAML header pandoc would otherwise print as a paragraph
     body = re.sub(r"^<hr />.*?<hr />", "", body, flags=re.S) if body.startswith("<hr") else body
-    appendix = build_appendix(cfg)
-    pool = json.loads((ROOT / cfg["pool"]).read_text())
+    appendix = build_appendix(cfg) if cfg["pool"] else ""
+    pool = json.loads((ROOT / cfg["pool"]).read_text()) if cfg["pool"] else []
     cover = f"""
     <section class="cover">
-      <h1>{html.escape(cfg['name'])}<br>Class</h1>
-      <div class="sub">Study guide &amp; full question pool · {html.escape(cfg['element'])}</div>
+      <h1>{cfg.get('cover_title') or html.escape(cfg['name']) + '<br>Class'}</h1>
+      <div class="sub">{html.escape(cfg['cover_sub']) if cfg.get('cover_sub') else 'Study guide &amp; full question pool · ' + html.escape(cfg['element'])}</div>
       <div class="band"></div>
-      <div class="freq">{ {'technician':'146.520','general':'14.074','extra':'1296.100'}[key] }<small>MHz</small></div>
+      <div class="freq">{ cfg.get('freq') or {'technician':'146.520','general':'14.074','extra':'1296.100'}[key] }<small>MHz</small></div>
       <div class="tick"></div><div class="needle"></div>
       <div class="meta">
-        <div><b>{html.escape(cfg['pool_label'])}</b><br>{len(pool)}-question pool · {html.escape(cfg['exam'])}</div>
+        <div>{('<b>' + html.escape(cfg['meta'][0]) + '</b><br>' + html.escape(cfg['meta'][1])) if cfg.get('meta') else '<b>' + html.escape(cfg['pool_label']) + '</b><br>' + str(len(pool)) + '-question pool · ' + html.escape(cfg['exam'])}</div>
         <div class="seventy3">73</div>
       </div>
     </section>"""

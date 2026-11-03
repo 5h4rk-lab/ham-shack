@@ -5,7 +5,7 @@ export default function ImageFig({ name, caption, wide }) {
   const info = imageInfo(name)
   if (!info) return null
   return (
-    <figure className={`photo ${wide ? 'wide' : ''}`}>
+    <figure className={`photo ${wide ? 'wide' : ''} ${/\.(png|gif)$/.test(info.file) ? 'diagram' : ''}`}>
       <img src={imageUrl(name)} alt={caption || info.title.replace(/^File:|\.\w+$/g, '')} loading="lazy" />
       <figcaption>
         {caption && <span className="cap">{caption}</span>}
