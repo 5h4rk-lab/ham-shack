@@ -1,0 +1,13 @@
+Third-party material
+
+1. Amateur radio question pools (data/*.json, data/figures/*).
+   Source text: NCVEC Question Pool Committee (public release, https://ncvec.org/).
+   Machine-readable conversion and figures: https://github.com/russolsen/ham_radio_question_pool
+   Licensed under the Apache License 2.0 (https://www.apache.org/licenses/LICENSE-2.0).
+   Files were copied unchanged.
+
+2. Agent skills (.claude/skills/react-expert, playwright-expert, embedded-systems).
+   Source: https://github.com/jeffallan/claude-skills, MIT License.
+
+3. Fonts (bundled into the site build and the PDFs via npm): Barlow Condensed,
+   Atkinson Hyperlegible, IBM Plex Mono, all under the SIL Open Font License 1.1.

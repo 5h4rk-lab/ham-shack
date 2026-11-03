@@ -1,0 +1,13 @@
+node_modules/
+site/dist/
+site/public/guides/
+.DS_Store
+*.log
+.env
+.env.*
+
+# local agent/plugin state
+.claude-flow/
+.swarm/
+ruvector.db
+*.rvf
