@@ -166,10 +166,6 @@ Ideas to steal:
 * **CW keyer** on a microcontroller, with a paddle you 3D-print
 * **Contest log parser** that turns Cabrillo files into stats
 
-## Skills in `.claude/skills/`
-
-Pulled from [jeffallan/claude-skills](https://github.com/jeffallan/claude-skills) (MIT): `react-expert` and `playwright-expert` for the site, and `embedded-systems` for microcontroller projects like keyers and trackers. More are one `gh api` away.
-
 ---
 
 ## Honest fine print
@@ -187,6 +183,6 @@ Pulled from [jeffallan/claude-skills](https://github.com/jeffallan/claude-skills
 * Photos: [Wikimedia Commons](https://commons.wikimedia.org/) (public domain, CC0, CC BY, CC BY-SA) and NASA. Every photo shows its author and license under it, and the site has a full credits page. `scripts/fetch_images.py` refuses anything that is not freely licensed.
 * Official group titles: NCVEC Technician syllabus (Feb 19 2026 revision).
 * Fonts: Barlow Condensed, Atkinson Hyperlegible, IBM Plex Mono (SIL OFL) via Fontsource.
-* Agent skills: [jeffallan/claude-skills](https://github.com/jeffallan/claude-skills) (MIT).
+
 
 Code, guides, and design are MIT licensed (see `LICENSE`). 73, and see you on the air.
